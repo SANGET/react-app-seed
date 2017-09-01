@@ -44,10 +44,10 @@
     "webpack-manifest-plugin": "1.2.1",
     "whatwg-fetch": "2.0.3"
   },
-  "author": "ALEX",
+  "author": "SANGET",
   "repository": {
     "type": "git",
-    "url": "http://github.9th.go/TeamMatrix/matrix-web-3.git"
+    "url": "https://github.com/SANGET/react-app-seed.git"
   },
   "devDependencies": {
     "bootstrap-sass": "^3.3.7",
