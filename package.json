@@ -33,6 +33,8 @@
     "react-dev-utils": "^4.0.0",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",
+    "babel-plugin-react-transform": "^2.0.2",
+    "react-transform-hmr": "^1.0.4",
     "react-transition-group": "1.2.0",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
@@ -89,8 +91,19 @@
     ]
   },
   "babel": {
-    "presets": [
-      "react-app"
-    ]
+    "presets": ["react-app"],
+    "env": {
+      "development": {
+        "plugins": [
+          ["react-transform", {
+            "transforms": [{
+              "transform": "react-transform-hmr",
+              "imports": ["react"],
+              "locals": ["module"]
+            }]
+          }]
+        ]
+      }
+    }
   }
 }
