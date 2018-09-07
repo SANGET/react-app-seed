@@ -2,23 +2,17 @@
 
 ## 用处
 
-Create React APP 的一些限制
+React 前端工程脚手架
 
-- 不支持全局去除 ESLint
-- 不支持 SCSS
-- 没有 hot reload 功能
+- 支持 SCSS
+- 支持 hot loader
+- babel 7
+- webpack 4
 
-所以做了一些调整
-
-- 去掉 ESLint
-- 支持嵌入 SCSS
-- 单独打包各种资源
-- 加入 hot reload 支持
-
-## 运行
+## 开始使用
 
 ```shell
-yarn install
-# 或者
-npm i
+git clone https://github.com/SANGET/react-app-seed.git yourProjectName
+cd yourProjectName
+npm run init
 ```

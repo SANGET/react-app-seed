@@ -38,15 +38,22 @@ function getServedPath(appPackageJson) {
   return ensureSlash(servedUrl, true);
 }
 
+let appSrc = resolveApp('src');
+
+let workspacePath = [
+  appSrc,
+  resolveApp('packages'),
+  resolveApp('basic-packages'),
+];
+
 // config after eject: we're in ./config/
 module.exports = {
   dotenv: resolveApp('.env'),
   appBuild: resolveApp('build'),
   appPublic: resolveApp('public'),
   appHtml: resolveApp('public/index.html'),
-  appPcHtml: resolveApp('public/html/pc.index.ejs'),
-  appMobileHtml: resolveApp('public/html/mobile.index.ejs'),
-  appIndexJs: resolveApp('src/index.js'),
+  deployEntryHtml: resolveApp('public/index.html'),
+  appIndexJs: resolveApp('src/app.js'),
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('src'),
   yarnLockFile: resolveApp('yarn.lock'),
@@ -54,4 +61,5 @@ module.exports = {
   appNodeModules: resolveApp('node_modules'),
   publicUrl: getPublicUrl(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json')),
+  workspacePath,
 };
