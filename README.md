@@ -7,6 +7,15 @@
 
 ## 使用
 
+先安装 babel cli, 确保 babel 版本为 7
+
+```shell
+npm i @babel/core @babel/node @babel/cli -g
+
+babel -v # -> 7
+babel-node -v # -> 7
+```
+
 ```shell
 git clone https://github.com/SANGET/react-app-seed.git yourProjectName
 cd yourProjectName
