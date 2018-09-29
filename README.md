@@ -28,7 +28,7 @@ npm run init
 Step1. 安装 ESLint 开发环境
 
 ```shell
-yarn add babel-eslint eslint eslint-config-airbnb eslint-plugin-node eslint-plugin-promise eslint-plugin-react --dev -W
+yarn add babel-eslint eslint eslint-plugin-import eslint-plugin-jsx-a11y eslint-config-airbnb eslint-plugin-node eslint-plugin-promise eslint-plugin-react --dev -W
 ```
 
 Step2. vscode 安装 eslint 插件
