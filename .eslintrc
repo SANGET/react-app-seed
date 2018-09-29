@@ -1,5 +1,6 @@
 {
   "extends": [
+    "airbnb",
     "eslint:recommended",
     "plugin:react/recommended"
   ],
@@ -10,9 +11,7 @@
     "browser": true
   },
   "plugins": [
-    "react",
-    "jsx-a11y",
-    "import"
+    "react"
   ],
   "rules": {
     "indent": ["error", 2],
@@ -23,6 +22,9 @@
         "vars": "all", "args": "after-used", "ignoreRestSiblings": false
       }
     ],
+    "jsx-a11y/click-events-have-key-events": 0,
+    "jsx-a11y/no-static-element-interactions": 0,
+    "react/jsx-tag-spacing": 0,
     "react/jsx-filename-extension": [
       1,
       {
