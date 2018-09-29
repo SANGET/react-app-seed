@@ -25,12 +25,14 @@ npm run init
 
 ## 代码规范约定
 
+> 基于 Airbnb 的编码规范，但非强制性，使用编辑器的提示功能，请遵守约定
+
 Step1. 安装 ESLint 开发环境
 
 ```shell
 yarn add babel-eslint eslint eslint-plugin-import eslint-plugin-jsx-a11y eslint-config-airbnb eslint-plugin-node eslint-plugin-promise eslint-plugin-react --dev -W
 ```
 
-Step2. vscode 安装 eslint 插件
+Step2. 编辑器安装 eslint 插件，例如 vscode atom
 
 Step3. 使用 .eslintrc 文件
