@@ -31,6 +31,6 @@ Step1. 安装 ESLint 开发环境
 yarn add eslint eslint-config-airbnb eslint-plugin-node eslint-plugin-promise eslint-plugin-react --dev -W
 ```
 
-Step2 vscode 安装 eslint 插件
+Step2. vscode 安装 eslint 插件
 
-Step3 使用 .eslintrc 文件
+Step3. 使用 .eslintrc 文件
