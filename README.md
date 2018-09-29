@@ -2,6 +2,7 @@
 
 - 支持 SCSS
 - 支持 React hot loader
+- 支持 ESLint
 - babel 7
 - webpack 4
 
@@ -21,3 +22,15 @@ git clone https://github.com/SANGET/react-app-seed.git yourProjectName
 cd yourProjectName
 npm run init
 ```
+
+## 代码规范约定
+
+Step1. 安装 ESLint 开发环境
+
+```shell
+yarn add eslint eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-node eslint-plugin-promise eslint-plugin-react -W
+```
+
+Step2 vscode 安装 eslint 插件
+
+Step3 使用 .eslintrc 文件
