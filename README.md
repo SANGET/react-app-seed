@@ -1,5 +1,7 @@
 # React 前端工程脚手架
 
+[![Build Status](https://travis-ci.org/SANGET/react-app-seed.svg?branch=master)](https://travis-ci.org/SANGET/react-app-seed)
+
 - 支持 SCSS
 - 支持 React hot loader
 - 支持 ESLint
