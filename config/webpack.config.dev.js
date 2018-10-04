@@ -9,6 +9,9 @@ const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 // const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
+
+const { CheckerPlugin } = require('awesome-typescript-loader');
+
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
 
@@ -37,7 +40,7 @@ module.exports = {
     modules: ['node_modules', paths.appNodeModules].concat(
       process.env.NODE_PATH.split(path.delimiter).filter(Boolean)
     ),
-    extensions: ['.web.js', '.js', '.json', '.web.jsx', '.jsx'],
+    extensions: ['.web.js', '.js', '.json', '.web.jsx', '.jsx', '.ts', '.tsx'],
     alias: {
       'react-native': 'react-native-web',
     },
@@ -48,21 +51,22 @@ module.exports = {
   module: {
     strictExportPresence: true,
     rules: [
-      {
-        test: /\.(js|jsx)$/,
-        enforce: 'pre',
-        use: [
-          // {
-          //   options: {
-          //     formatter: eslintFormatter,
-          //     eslintPath: require.resolve('eslint'),
-          //
-          //   },
-          //   loader: require.resolve('eslint-loader'),
-          // },
-        ],
-        include: paths.appSrc,
-      },
+      // 可以手动开启 eslint
+      // {
+      //   test: /\.(js|jsx)$/,
+      //   enforce: 'pre',
+      //   use: [
+      //     {
+      //       options: {
+      //         formatter: eslintFormatter,
+      //         eslintPath: require.resolve('eslint'),
+          
+      //       },
+      //       loader: require.resolve('eslint-loader'),
+      //     },
+      //   ],
+      //   include: paths.appSrc,
+      // },
       {
         oneOf: [
           {
@@ -74,23 +78,20 @@ module.exports = {
             },
           },
           {
+            test: /\.(tsx?)$/,
+            exclude: /node_modules/,
+            include: paths.workspacePath,
+            use: {
+              loader: 'awesome-typescript-loader',
+            },
+          },
+          {
             test: /\.(js|jsx)$/,
             exclude: /node_modules/,
             include: paths.workspacePath,
             use: {
               loader: 'babel-loader',
-              options: {
-                presets: [
-                  "@babel/env", "@babel/preset-react"
-                ],
-                plugins: [
-                  "@babel/plugin-proposal-class-properties",
-                ]
-              }
             },
-            // options: {
-            //   cacheDirectory: true,
-            // },
           },
           {
             test: /\.scss$/,
@@ -157,6 +158,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new CaseSensitivePathsPlugin(),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new CheckerPlugin()
   ],
   node: {
     dgram: 'empty',
@@ -167,4 +169,8 @@ module.exports = {
   performance: {
     hints: false,
   },
+  // externals: {
+  //   "react": "React",
+  //   "react-dom": "ReactDOM"
+  // }
 };

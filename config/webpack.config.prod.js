@@ -10,10 +10,10 @@ const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const cssnano = require('cssnano');
 
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
-const cssnano = require('cssnano');
 
 const publicPath = paths.servedPath;
 const shouldUseRelativeAssetPaths = publicPath === './';
