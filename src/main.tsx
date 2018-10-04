@@ -10,7 +10,7 @@ export interface AppProps {
 
 class App extends React.Component<AppProps, {}> {
   static u = 'alex';
-  constructor(props) {
+  constructor(props: any) {
     super(props);
   }
   render() {
