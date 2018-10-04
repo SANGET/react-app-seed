@@ -22,8 +22,14 @@ babel-node -v # -> 7
 ```shell
 git clone https://github.com/SANGET/react-app-seed.git yourProjectName
 cd yourProjectName
+
+# 使用 typescript 版本, 默认为 js 版本
+git checkout type
+
 npm run init
 ```
+
+[typescript 版本说明](https://github.com/SANGET/react-app-seed/tree/type)
 
 ## 代码规范约定
 

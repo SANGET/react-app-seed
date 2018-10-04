@@ -76,9 +76,8 @@ module.exports = {
           {
             test: /\.(js|jsx)$/,
             include: paths.workspacePath,
-            loader: require.resolve('babel-loader'),
-            options: {
-              compact: true,
+            use: {
+              loader: 'babel-loader',
             },
           },
           {
