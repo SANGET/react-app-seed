@@ -4,12 +4,14 @@ import { hot } from 'react-hot-loader';
 import './style.scss';
 import './mobile.scss';
 
-export interface AppProps {
-  // username: string
+interface AppProps {
+  username?: string
 };
 
 class App extends React.Component<AppProps, {}> {
-  static u = 'alex';
+  // static defaultProps = {
+  //   username: 'alex'
+  // };
   constructor(props: any) {
     super(props);
   }
