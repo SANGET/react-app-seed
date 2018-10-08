@@ -15,13 +15,13 @@
     "autoZip": "npm run setAppVersion; npm run build; npm run zipBuild;",
     "update": "yarn add uke-request ukelli-ui -W",
     "zipBuild": "mkdir -p ./zip-build; zip -r ./zip-build/build.zip ./build/*",
-    "test": "jest"
+    "test": "ukectl test"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
     "@babel/core": "^7.0.0",
     "@babel/node": "^7.0.0",
-    "uke-scripts": "^0.4.8"
+    "uke-scripts": "^0.4.9"
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
