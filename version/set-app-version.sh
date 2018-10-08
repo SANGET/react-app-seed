@@ -16,8 +16,6 @@ num_ver=`awk 'END{print NR}' log.txt`
 app_ver=$num_ver"-"$DATE
 upd_log=`cat version/update-log.txt | tr "\n" "~" | tr "\r" "~" | tr "\0" "~"`
 echo '#######'$upd_log
-# sed -i '' -e 's/GIT_VERSION_FORNOW/'$git_ver'/g' src/version.json
-# sed -i '' -e 's/APP_VERSION_FORNOW/'$app_ver'/g' src/version.json
 sed -i '' -e 's/NUMBER_VERSION_FORNOW/'$num_ver'/g' src/version.json
 sed -i '' -e 's/UPDATE_LOG_FORNOW/'$upd_log'/g' src/version.json
 
