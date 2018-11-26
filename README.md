@@ -76,6 +76,16 @@ Step2. 编辑器安装 eslint 插件，例如 vscode atom
 
 Step3. 使用 .eslintrc 文件
 
+### 测试用例和持续集成
+
+#### 测试用例
+
+根据实际情况使用测试库，目前使用 jest
+
+#### 持续集成
+
+可以根据项目的性质和实际的情况操作，此仓库使用 travis 和 netlify
+
 ## 库一览
 
 - [basic-helper](https://github.com/SANGET/basic-helper-js.git)
