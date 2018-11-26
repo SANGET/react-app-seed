@@ -76,6 +76,12 @@ Step2. 编辑器安装 eslint 插件，例如 vscode atom
 
 Step3. 使用 .eslintrc 文件
 
+### 文档生成工具
+
+- JSDoc3
+- Docz
+- React Styleguide // 很难用
+
 ### 测试用例和持续集成
 
 - 根据实际情况使用测试库，目前使用 jest
