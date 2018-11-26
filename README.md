@@ -33,6 +33,37 @@ npm run init
 
 ## 代码规范约定
 
+### Markdown 文档说明
+
+> 当开发的功能需要提供给其他人员使用时，需要编写对应的开发文档，统一使用 Markdown 来写
+
+推荐使用 vscode 的插件
+
+- markdown all in one // 便于编写 Markdown
+- markdownlint        // 便于检查 Markdown 是否符合预期格式
+
+### 开发工具
+
+VSCode | Atom、CodePen
+
+### 代码注解
+
+使用 VSCode 的 document this 插件，在关键的功能函数上编写文档化注释，详情可以参考 [wrodpress](https://make.wordpress.org/core/handbook/best-practices/inline-documentation-standards/javascript/) 的关于 js 文档注释的说明
+
+```js
+/**
+ * 说明
+ *
+ * @param {object} params 说明
+ * @returns {boolean} 说明
+ */
+function forDocument(params = {}) {
+  return true;
+}
+```
+
+### Eslint
+
 > 基于 Airbnb 的编码规范，但非强制性，使用编辑器的提示功能，请遵守约定
 
 Step1. 安装 ESLint 开发环境
