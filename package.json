@@ -18,10 +18,10 @@
     "test": "ukectl test"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0",
-    "@babel/core": "^7.0.0",
-    "@babel/node": "^7.0.0",
-    "uke-scripts": "^0.4.9"
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
+    "uke-scripts": "^0.4.19"
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
@@ -30,12 +30,12 @@
     "object-assign": "4.1.1",
     "promise": "8.0.1",
     "prop-types": "^15.5.10",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
     "react-hot-loader": "^4.3.11",
-    "uke-request": "^0.12.7",
-    "ukelli-ui": "^2.5.18",
-    "unistore": "^3.0.6"
+    "uke-request": "^0.13.6",
+    "ukelli-ui": "^2.12.3",
+    "unistore": "^3.2.1"
   },
   "author": "SANGET",
   "repository": {
