@@ -6,7 +6,9 @@
     "packages/*"
   ],
   "scripts": {
-    "start": "PORT=7788 PLATFORM=workspace_admin ukectl start",
+    "start": "yarn desktop:dev",
+    "desktop:dev": "PLATFORM=desktop PORT=7788 node scripts/start.js",
+    "mobile:dev": "PLATFORM=mobile PORT=7799 node scripts/start.js",
     "build": "ukectl build",
     "initWrokspace": "node ./scripts/init-workspace",
     "init": "git init; npm i; npm run setAppVersion",
