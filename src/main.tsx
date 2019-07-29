@@ -1,24 +1,19 @@
-import * as React from 'react';
+import React from 'react';
 import { hot } from 'react-hot-loader';
 
+import HomePage from './pages/home';
+
 import './style.scss';
-import './mobile.scss';
 
 interface AppProps {
-  username?: string
-};
+  username?: string;
+}
 
 class App extends React.Component<AppProps, {}> {
-  // static defaultProps = {
-  //   username: 'alex'
-  // };
-  constructor(props: any) {
-    super(props);
-  }
   render() {
-    // console.log(this.props.username)
+    const { username } = this.props;
     return (
-      <div style={{
+      <div className="p20" style={{
         fontFamily: 'Arial, "Microsoft YaHei"'
       }}>
         <h2>React 工程脚手架</h2>
@@ -29,8 +24,9 @@ class App extends React.Component<AppProps, {}> {
           <li>webpack 4</li>
           <li>typescript</li>
         </ul>
+        <HomePage />
       </div>
-    )
+    );
   }
 }
 
