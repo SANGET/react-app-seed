@@ -35,3 +35,5 @@ version.json
 packages/
 _uke-data.js
 version.js
+
+dist
