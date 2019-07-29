@@ -7,7 +7,7 @@
   ],
   "scripts": {
     "start": "PORT=5567 node ./scripts/start",
-    "build": "ukectl build",
+    "build": "NODE_ENV=production node ./scripts/build",
     "initWrokspace": "node ./scripts/init-workspace",
     "init": "git init; npm i; npm run setAppVersion",
     "setAppVersion": "sh ./version/set-app-version.sh",
