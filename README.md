@@ -2,11 +2,15 @@
 
 [![Build Status](https://travis-ci.org/SANGET/react-app-seed.svg?branch=master)](https://travis-ci.org/SANGET/react-app-seed)
 
-- 支持 SCSS
-- 支持 React hot loader
-- 支持 ESLint
-- babel 7
-- webpack 4
+支持
+
+- SCSS
+- React hot loader
+- ESLint
+- Babel 7
+- Webpack 4
+- Workspace
+- Typescript
 
 ## 使用
 
