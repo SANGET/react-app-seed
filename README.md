@@ -4,55 +4,36 @@
 
 支持
 
-- SCSS
-- React hot loader
-- ESLint
-- Babel 7
-- Webpack 4
-- Workspace
 - Typescript
+- SCSS
+- ESLint
 
 ## 使用
 
-先安装 babel cli, 确保 babel 版本为 7
-
 ```shell
-npm i @babel/core @babel/node @babel/cli -g
-
-babel -v # -> 7
-babel-node -v # -> 7
+git clone https://github.com/SANGET/react-app-seed.git
+cd ./react-app-seed
+yarn; yarn start
 ```
 
-```shell
-git clone https://github.com/SANGET/react-app-seed.git yourProjectName
-cd yourProjectName
+## 约定
 
-# 使用 typescript 版本, 默认为 js 版本
-git checkout type
+### 文档编写
 
-npm run init
-```
+使用 `vscode` 编写 `Markdown` 或者 `typora`
 
-[typescript 版本说明](https://github.com/SANGET/react-app-seed/tree/type)
-
-## 代码规范约定
-
-### Markdown 文档说明
-
-> 当开发的功能需要提供给其他人员使用时，需要编写对应的开发文档，统一使用 Markdown 来写
-
-推荐使用 vscode 的插件
+vscode markdown 插件
 
 - markdown all in one // 便于编写 Markdown
 - markdownlint        // 便于检查 Markdown 是否符合预期格式
 
 ### 开发工具
 
-VSCode | Atom、CodePen
+vscode
 
-### 代码注解
+### 注解
 
-使用 VSCode 的 document this 插件，在关键的功能函数上编写文档化注释，详情可以参考 [wrodpress](https://make.wordpress.org/core/handbook/best-practices/inline-documentation-standards/javascript/) 的关于 js 文档注释的说明
+JSDoc 风格
 
 ```js
 /**
@@ -66,37 +47,44 @@ function forDocument(params = {}) {
 }
 ```
 
-### Eslint
+或者 ts 的注解
 
-> 基于 Airbnb 的编码规范，但非强制性，使用编辑器的提示功能，请遵守约定
-
-Step1. 安装 ESLint 开发环境
-
-```shell
-yarn add babel-eslint eslint eslint-plugin-import eslint-plugin-jsx-a11y eslint-config-airbnb eslint-plugin-node eslint-plugin-promise eslint-plugin-react --dev -W
+```ts
+interface Params {
+  /** 参数类型 */
+  type: string;
+}
+function forDocument(params: Params) {
+  return true;
+}
 ```
 
-Step2. 编辑器安装 eslint 插件，例如 vscode atom
+### Eslint
 
-Step3. 使用 .eslintrc 文件
+> 基于 Airbnb 的编码规范，非强制性，使用编辑器的提示功能
+
+1. vscode 安装 eslint 插件
+2. 添加 .eslintrc 文件
+3. 添加 .tsconfig.json
 
 ### 文档生成工具
 
 - JSDoc3
 - Docz
-- React Styleguide // 很难用
+- React Styleguide
+- StoryBook
 
-### 测试用例和持续集成
+### 测试与持续集成
 
 - 根据实际情况使用测试库，目前使用 jest
 - 可以根据项目的性质和实际的情况操作，此仓库使用 travis 和 netlify
 
-## 库一览
+## 依赖
 
 - [basic-helper](https://github.com/SANGET/basic-helper-js.git)
 - [ukelli-ui](https://github.com/ukelli/ukelli-ui.git)
 - [uke-request](https://github.com/SANGET/uke-request.git)
+- [uke-dashboard](https://github.com/SANGET/uke-dashboard.git)
 - [uke-admin-web-scaffold](https://github.com/SANGET/uke-admin-web-scaffold.git)
 - [uke-cli](https://github.com/SANGET/uke-cli.git)
-- [uke-admin-seed](https://github.com/SANGET/uke-admin-seed.git)
-- [uke-web-server](https://github.com/SANGET/uke-web-server.git)
+- [uke-scripts](https://github.com/SANGET/uke-scripts.git)
