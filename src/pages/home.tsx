@@ -5,12 +5,12 @@ const HomePage = (props) => {
   return (
     <div className="home-page">
       <Button
-        text="Button"
+        text="弹出层"
         onClick={(e) => {
           ShowModal({
             title: '欢迎',
             children: (
-              <div>欢迎到来</div>
+              <div className="p20">欢迎到来</div>
             )
           });
         }} />
