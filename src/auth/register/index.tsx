@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import { FormGenerator, TipPanel } from 'ukelli-ui';
 import { FormOptions } from 'ukelli-ui/core/form-generator/form-generator';
 
-import Storage from 'basic-helper/storage'
 import { register } from '../actions/apis';
 
 export default class Register extends Component {
@@ -21,7 +19,6 @@ export default class Register extends Component {
       {
         ref: 'username',
         type: 'input',
-        // defaultValue: defaultUserInfo.AdminName,
         title: '账号',
         iconName: 'account',
         required: true
@@ -29,7 +26,6 @@ export default class Register extends Component {
       {
         ref: 'password',
         type: 'password',
-        // defaultValue: defaultUserInfo.Password,
         title: '密码',
         iconName: 'lock',
         required: true
