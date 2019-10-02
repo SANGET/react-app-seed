@@ -12,7 +12,9 @@
     "@typescript-eslint/indent": ["error", 2],
     "@typescript-eslint/explicit-function-return-type": 0,
     "@typescript-eslint/explicit-member-accessibility": 0,
-    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "indent": ["error", 2, {
+      "SwitchCase": 1
+    }],
     "semi": ["error", "always"],
     "no-unused-vars": [
       1,
@@ -25,12 +27,12 @@
     "import/prefer-default-export": 0,
     "no-underscore-dangle": 0,
     "no-console": 0,
+    "no-return-assign": 0,
     "import/no-extraneous-dependencies": 0,
     "no-case-declarations": 0,
     "no-plusplus": 0,
     "comma-dangle": 0,
     "quotes": 0,
-    "arrow-body-style": 0,
     "jsx-a11y/click-events-have-key-events": 0,
     "jsx-a11y/no-static-element-interactions": 0,
     "react-hooks/exhaustive-deps": 0,
