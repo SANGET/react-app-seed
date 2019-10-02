@@ -2,10 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { Tabs, Tab } from 'ukelli-ui/core/tabs';
 
-import LoginPanel from './login-panel';
+import LoginPanel, { LoginPanelProps } from './login-panel';
+import RegisterPanel from '../register'
 
-const LoginSelector = (props) => {
+export interface LoginSelectorProps extends LoginPanelProps {
+  isLogin: boolean;
+  children?: any;
+}
+
+const LoginSelector: React.SFC<LoginSelectorProps> = (props) => {
   const { children, isLogin } = props;
 
   let container;
@@ -15,8 +22,16 @@ const LoginSelector = (props) => {
       break;
     default:
       container = (
-        <LoginPanel
-          {...props}/>
+        <Tabs>
+          <Tab label="登陆">
+            <LoginPanel
+              {...props}/>
+          </Tab>
+          <Tab label="注册">
+            <RegisterPanel
+              {...props}/>
+          </Tab>
+        </Tabs>
       );
   }
   return (

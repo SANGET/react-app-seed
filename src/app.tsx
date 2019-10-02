@@ -1,10 +1,14 @@
 import React from 'react';
 import { hot } from 'react-hot-loader';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Provider, connect } from 'unistore/react';
 
 import HomePage from './pages/home';
+import { authStore, authActions } from './auth/actions';
 
 import './style.scss';
+import LoginSelector from './auth/selector';
+import routers from './config/routers'
 
 interface AppProps {
   username?: string;
@@ -12,12 +16,42 @@ interface AppProps {
 
 class App extends React.Component<AppProps, {}> {
   render() {
-    const { username } = this.props;
+    const { username, login. logout, isLogin, logging, loginResDesc } = this.props;
     return (
-      <div className="p20" style={{
-        fontFamily: 'Arial, "Microsoft YaHei"'
-      }}>
+      <LoginSelector
+        loginResDesc={loginResDesc}
+        logging={logging}
+        isLogin={isLogin}
+        login={login}
+        logout={logout}>
         <Router>
+          <div>
+            <nav>
+              <ul>
+                {
+                  routers.map(({ path, name, component }) => {
+                    return (
+                      <li key={path}>
+                        <Link to={path}>{name}</Link>
+                      </li>
+                    )
+                  })
+                }
+              </ul>
+            </nav>
+            {
+              routers.map(({ path, name, component }) => {
+                const C = component;
+                return (
+                  <Route key={path} path={path}>
+                    <C />
+                  </Route>
+                )
+              })
+            }
+          </div>
+        </Router>
+        {/* <Router>
           <div>
             <nav>
               <ul>
@@ -52,10 +86,25 @@ class App extends React.Component<AppProps, {}> {
               </Route>
             </Switch>
           </div>
-        </Router>
-      </div>
+        </Router> */}
+      </LoginSelector>
     );
   }
 }
 
-export default hot(module)(App);
+
+function selector(state) {
+  return state;
+}
+
+const LoginFilterWithStore = connect(selector, authActions)(userStore => (
+  <App {...userStore}/>
+));
+
+const C = () => (
+  <Provider store={authStore}>
+    <LoginFilterWithStore/>
+  </Provider>
+);
+
+export default hot(module)(C);

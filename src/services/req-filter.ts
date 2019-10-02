@@ -5,8 +5,22 @@
 import { RequestClass } from 'uke-request';
 
 import { authStore } from '../auth/actions';
+import { ApiResponse } from '../types/api-struct';
 
-const $R = new RequestClass();
+declare global {
+  interface Window {
+    COMMON_REQ_HEADER: {};
+  }
+}
+
+interface Header {
+  sessId: string;
+  username: string;
+  device: string;
+}
+
+/** 初始化时添加统一的 res 类型 */
+const $R = new RequestClass<ApiResponse>();
 
 function getUserName() {
   return authStore.getState().username;
@@ -22,33 +36,35 @@ function getCommonHeader() {
   const reqHeader = {
     SessId: getSessID(),
     AdminName: getUserName(),
-    Platform: window.PLATFORM,
-    Device: window.DEVICE,
   };
 
   window.COMMON_REQ_HEADER = reqHeader;
   return reqHeader;
 }
 
+$R.setConfig({
+  baseUrl: 'http://localhost:5566',
+});
+
 /**
  * 前端应该与服务端的接口分离
  * 通过此方法实现对接远端需要的 request 数据
  */
-const beforeReq = (options) => {
-  const {
-    isCompress, method, data, ...params
-  } = options;
-  return {
-    header: {
-      ...getCommonHeader(data),
-      Compress: isCompress ? 1 : 0,
-      Method: method,
-      ...params
-    },
-    // path: method,
-    data
-  };
-};
+// const beforeReq = (options) => {
+//   const {
+//     isCompress, method, data, ...params
+//   } = options;
+//   return {
+//     header: {
+//       ...getCommonHeader(),
+//       Compress: isCompress ? 1 : 0,
+//       Method: method,
+//       ...params
+//     },
+//     // path: method,
+//     data
+//   };
+// };
 
 /**
  * 前端应该与服务端的接口分离
@@ -69,7 +85,7 @@ const afterRes = (resData) => {
 };
 
 /** 使用 $R 的中间件 */
-$R.use([beforeReq, afterRes]);
+$R.use([(data) => data, afterRes]);
 
 /**
  * 设置 $R 对象的 res

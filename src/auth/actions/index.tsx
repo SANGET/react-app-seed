@@ -1,8 +1,7 @@
 import createStore from 'unistore';
-import { Call } from 'basic-helper';
+import { Call, EventEmitter } from 'basic-helper';
 
-import { AUTH_APIS } from './apis';
-import NAV_MENU_CONFIG from '../../config/nav-config';
+import * as AUTH_APIS from './apis';
 
 const defaultAuthStore = {
   userInfo: {},
@@ -12,13 +11,12 @@ const defaultAuthStore = {
   logouting: false,
   isLogin: false,
   sessID: 'none',
-  menuStore: NAV_MENU_CONFIG
 };
 const authStore = createStore(defaultAuthStore);
 
 function onLoginSuccess(store, resData) {
   const userInfo = resData;
-  const username = resData.AdminName;
+  const username = resData.username;
   userInfo.username = username;
   // let menuStore = (userInfo.Menus || {}).Child;
   const sessID = resData.SessId;
@@ -33,7 +31,7 @@ function onLoginSuccess(store, resData) {
     // menuStore
   });
 
-  window.$GH.EventEmitter.emit('LOGIN_SUCCESS', { userInfo });
+  EventEmitter.emit('LOGIN_SUCCESS', { userInfo });
   sessionStorage.setItem('PREV_LOGIN_DATA', JSON.stringify(resData));
 }
 
@@ -66,14 +64,14 @@ const authActions = store => ({
       logging: true
     });
     const loginRes = await AUTH_APIS.login(form);
-    const isLogin = !!loginRes.data && !loginRes.err;
+    const isLogin = !!loginRes.data && !loginRes.code;
     if (isLogin) {
       Call(callback, form);
       onLoginSuccess(store, form);
     } else {
       store.setState({
         logging: false,
-        loginResDesc: loginRes.err
+        loginResDesc: loginRes.message
       });
     }
   },

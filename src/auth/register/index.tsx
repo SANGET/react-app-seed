@@ -1,22 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { FormGenerator } from 'ukelli-ui/core/form-generator';
-import { TipPanel } from 'ukelli-ui/core/tip-panel';
+import { FormGenerator, TipPanel } from 'ukelli-ui';
 import { FormOptions } from 'ukelli-ui/core/form-generator/form-generator';
 
 import Storage from 'basic-helper/storage'
+import { register } from '../actions/apis';
 
-const isDev = process.env.NODE_ENV == 'development';
-const StoreLoginInfo = 'STORE_LOGIN_INFO';
-
-export interface LoginPanelProps {
-  logging: boolean;
-  login: (formValue, callback) => void;
-  loginResDesc: string;
-}
-
-export default class LoginPanel extends Component<LoginPanelProps> {
+export default class Register extends Component {
+  state = {
+    logging: false
+  }
   formOptions: FormOptions
   formHelper
 
@@ -43,43 +37,24 @@ export default class LoginPanel extends Component<LoginPanelProps> {
     ];
   }
 
-  // componentDidMount() {
-  //   const loaderDOM = document.querySelector('#loadingBg');
-  //   if (!loaderDOM) return;
-  //   loaderDOM.classList.add('loaded');
-  //   loaderDOM.parentNode.removeChild(loaderDOM);
-  //   setTimeout(() => {
-  //     process.env.NODE_ENV == 'development' && document.querySelector('#freeLogin').click();
-  //   }, 100);
-  // }
-
   render() {
-    const { logging, login, loginResDesc } = this.props;
-
+    const { logging } = this.state
     return (
       <div
         className="login-panel fixbg">
         <div className="form-layout">
           <h3 className="title"></h3>
-          {
-            loginResDesc && (
-              <TipPanel text={loginResDesc}/>
-            )
-          }
           <FormGenerator
             className="login-form-container"
             // inlineTitle={true}
             onSubmit={(e) => {
-              login(this.formHelper.value, (userInfo) => {
-                // console.log(userInfo)
-                Storage.setItem(StoreLoginInfo, userInfo);
-              });
+              register(this.formHelper.value);
             }}
             showInputTitle
             formOptions={this.formOptions} ref={e => this.formHelper = e}>
             <div className="form-group">
               <button type="submit" className="btn theme flat login-btn" id="freeLogin">
-                {logging ? '登录中...' : '登录'}
+                {logging ? '注册中...' : '注册'}
               </button>
             </div>
           </FormGenerator>
