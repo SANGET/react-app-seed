@@ -22,29 +22,14 @@ interface Header {
 /** 初始化时添加统一的 res 类型 */
 const $R = new RequestClass<ApiResponse>();
 
-function getUserName() {
-  return authStore.getState().username;
-}
-function getSessID() {
-  return authStore.getState().sessID;
-}
-
-/**
- * 获取全局的请求的 header
- */
-function getCommonHeader() {
-  const reqHeader = {
-    SessId: getSessID(),
-    AdminName: getUserName(),
-  };
-
-  window.COMMON_REQ_HEADER = reqHeader;
-  return reqHeader;
-}
-
 $R.setConfig({
   baseUrl: 'http://localhost:5566',
+  commonHeaders: {
+    credentials: ''
+  }
 });
+
+$R.checkStatus = (originRes) => originRes.status === 200;
 
 /**
  * 前端应该与服务端的接口分离
@@ -77,15 +62,15 @@ $R.setConfig({
  *   err: null || 'description' // 对接 response 的错误描述
  * }
  */
-const afterRes = (resData) => {
-  let _resData = resData;
-  if (typeof resData !== 'object') _resData = {};
-  _resData.data = _resData.data || _resData.Data || {};
-  return _resData;
-};
+// const afterRes = (resData) => {
+//   let _resData = resData;
+//   if (typeof resData !== 'object') _resData = {};
+//   _resData.data = _resData.data || _resData.Data || {};
+//   return _resData;
+// };
 
-/** 使用 $R 的中间件 */
-$R.use([(data) => data, afterRes]);
+// /** 使用 $R 的中间件 */
+// $R.use([(data) => data, afterRes]);
 
 /**
  * 设置 $R 对象的 res

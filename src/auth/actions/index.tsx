@@ -64,7 +64,7 @@ const authActions = store => ({
       logging: true
     });
     const loginRes = await AUTH_APIS.login(form);
-    const isLogin = !!loginRes.data && !loginRes.code;
+    const isLogin = loginRes.code == 0;
     if (isLogin) {
       Call(callback, form);
       onLoginSuccess(store, form);

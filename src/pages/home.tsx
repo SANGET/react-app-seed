@@ -1,5 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ShowModal, Button } from 'ukelli-ui';
+import { getUsers } from '../auth/actions/apis';
+
+const Popover = () => {
+  useEffect(() => {
+    getUsers().then((res) => {
+      console.log(res)
+    })
+    return () => {
+    };
+  }, [])
+  return (
+    <div className="p20">欢迎到来</div>
+  )
+}
 
 const HomePage = (props) => {
   return (
@@ -10,7 +24,7 @@ const HomePage = (props) => {
           ShowModal({
             title: '欢迎',
             children: (
-              <div className="p20">欢迎到来</div>
+              <Popover />
             )
           });
         }} />

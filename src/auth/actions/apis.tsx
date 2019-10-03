@@ -16,3 +16,7 @@ export function register(formData: RegisterForm) {
   return $R.post('/register', formData);
 }
 
+export function getUsers() {
+  return $R.get('/users');
+}
+
