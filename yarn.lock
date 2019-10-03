@@ -11940,10 +11940,10 @@ uid-number@0.0.6:
   resolved "https://registry.yarnpkg.com/uid-number/-/uid-number-0.0.6.tgz#0ea10e8035e8eb5b8e4449f06da1c730663baa81"
   integrity sha1-DqEOgDXo61uOREnwbaHHMGY7qoE=
 
-uke-request@^1.1.0-rc0:
-  version "1.1.0-rc0"
-  resolved "https://registry.yarnpkg.com/uke-request/-/uke-request-1.1.0-rc0.tgz#2f03db6e72e50a4004bd2f0f80319bfd501a2a09"
-  integrity sha512-Hmt38sAZHTT6cVhX2BAyBIvrBM+7ZLF+GRVaPdb4E3OIeQ46oOgN2mJsS6eYXj2iWA4PvzBRTs3ln3A4fLGYig==
+uke-request@^1.1.0-rc1:
+  version "1.1.0-rc1"
+  resolved "https://registry.yarnpkg.com/uke-request/-/uke-request-1.1.0-rc1.tgz#55b2ec176580a7700fec5b2b43ec2fcbf2e6e236"
+  integrity sha512-kDWGRQAgkyNf50WefhcaK5ssXtPiP0bhayvhJOdUvA+YAs0+tlwY5bLOV1xtDbjqFCepVq2a/Vf51g/N7Bhl5Q==
   dependencies:
     lzma "^2.3.2"
     rc4-ts "^2.0.0"
