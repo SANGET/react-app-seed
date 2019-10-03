@@ -20,13 +20,18 @@ interface Header {
 }
 
 /** 初始化时添加统一的 res 类型 */
-const $R = new RequestClass<ApiResponse>();
+const $R = new RequestClass<ApiResponse>({
+  // baseUrl: 'http://localhost:5566',
+  // fetchOptions: {
+  //   credentials: 'include'
+  // }
+});
 
 $R.setConfig({
   baseUrl: 'http://localhost:5566',
-  commonHeaders: {
-    credentials: ''
-  }
+  // fetchOptions: {
+  //   credentials: 'include'
+  // }
 });
 
 $R.checkStatus = (originRes) => originRes.status === 200;
