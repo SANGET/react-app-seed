@@ -13,10 +13,15 @@ export interface LoginSelectorProps extends LoginPanelProps {
 }
 
 const LoginSelector: React.SFC<LoginSelectorProps> = (props) => {
-  const { children, isLogin } = props;
+  const { children, isLogin, autoLoging } = props;
 
   let container;
   switch (true) {
+    case autoLoging:
+      container = (
+        <div>自动登陆中...</div>
+      );
+      break;
     case isLogin:
       container = React.cloneElement(children, props);
       break;

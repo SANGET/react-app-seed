@@ -5,7 +5,7 @@
 import { RequestClass } from 'uke-request';
 
 import { EventEmitter } from 'basic-helper';
-import { authStore } from '../auth/actions';
+import { getPrevLoginToken } from '../auth/actions/store';
 import { ApiResponse } from '../types/api-struct';
 
 declare global {
@@ -14,15 +14,14 @@ declare global {
   }
 }
 
-interface Header {
-  sessId: string;
-  username: string;
-  device: string;
-}
+const token = getPrevLoginToken();
 
 /** 初始化时添加统一的 res 类型 */
 const $R = new RequestClass<ApiResponse>({
-  // baseUrl: 'http://localhost:5566',
+  baseUrl: 'http://localhost:5566',
+  commonHeaders: token ? {
+    authorization: token
+  } : {}
   // fetchOptions: {
   //   credentials: 'include'
   // }
@@ -40,14 +39,6 @@ EventEmitter.on('LOGIN_SUCCESS', ({ loginRes }) => {
     //   mode: 'cors'
     // }
   });
-});
-
-$R.setConfig({
-  baseUrl: 'http://127.0.0.1:5566',
-  // fetchOptions: {
-  //   credentials: 'include',
-  //   mode: 'cors'
-  // }
 });
 
 $R.checkStatus = (originRes) => originRes.status === 200;

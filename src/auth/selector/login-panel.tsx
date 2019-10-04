@@ -6,13 +6,14 @@ import { TipPanel } from 'ukelli-ui/core/tip-panel';
 import { FormOptions } from 'ukelli-ui/core/form-generator/form-generator';
 
 import Storage from 'basic-helper/storage'
+import { AuthActions } from '../actions/store';
 
 const isDev = process.env.NODE_ENV == 'development';
 const StoreLoginInfo = 'STORE_LOGIN_INFO';
 
 export interface LoginPanelProps {
   logging: boolean;
-  login: (formValue, callback) => void;
+  login: AuthActions['login'];
   loginResDesc: string;
 }
 

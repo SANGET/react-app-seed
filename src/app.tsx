@@ -4,23 +4,30 @@ import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Provider, connect } from 'unistore/react';
 
 import HomePage from './pages/home';
-import { authStore, authActions } from './auth/actions';
+import { authStore, authActions, AuthActions, AuthStore } from './auth/actions/store';
 
 import './style.scss';
 import LoginSelector from './auth/selector';
 import routers from './config/routers'
 
-interface AppProps {
-  username?: string;
+interface AppProps extends AuthActions, AuthStore {
+  // username?: string;
 }
 
 class App extends React.Component<AppProps, {}> {
+  state = {
+    ready: false
+  }
+  componentDidMount() {
+    this.props.autoLogin();
+  }
   render() {
-    const { username, login. logout, isLogin, logging, loginResDesc } = this.props;
+    const { autoLoging, login, logout, isLogin, logging, loginResDesc } = this.props;
     return (
       <LoginSelector
         loginResDesc={loginResDesc}
         logging={logging}
+        autoLoging={autoLoging}
         isLogin={isLogin}
         login={login}
         logout={logout}>

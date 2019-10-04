@@ -3,14 +3,36 @@ import { Call, EventEmitter } from 'basic-helper';
 
 import * as AUTH_APIS from './apis';
 
-const defaultAuthStore = {
+export interface AuthActions {
+  autoLogin: () => void;
+  login: (form, callback) => void;
+  logout: () => void;
+}
+export interface AuthStore {
   userInfo: {},
-  username: 'none',
+  username: string;
+  loginResDesc: string;
+  autoLoging: boolean;
+  logging: boolean;
+  logouting: boolean;
+  isLogin: boolean;
+  token: string;
+}
+
+export function getPrevLoginToken() {
+  const res = getPrevLoginData();
+  return res ? res.token : null;
+}
+
+const defaultAuthStore: AuthStore = {
+  userInfo: {},
+  username: '',
   loginResDesc: '',
+  autoLoging: !!getPrevLoginToken(),
   logging: false,
   logouting: false,
   isLogin: false,
-  sessID: 'none',
+  token: '',
 };
 const authStore = createStore(defaultAuthStore);
 
@@ -19,29 +41,30 @@ function onLoginSuccess(store, resData) {
   const username = resData.username;
   userInfo.username = username;
   // let menuStore = (userInfo.Menus || {}).Child;
-  const sessID = resData.ssID;
+  const token = resData.token;
   // delete userInfo['Menus'];
 
   store.setState({
     logging: false,
+    autoLoging: false,
     isLogin: true,
-    sessID,
+    token,
     username,
     userInfo,
     // menuStore
   });
 
   EventEmitter.emit('LOGIN_SUCCESS', { userInfo, loginRes: resData });
-  sessionStorage.setItem('PREV_LOGIN_DATA', JSON.stringify(resData));
+  localStorage.setItem('PREV_LOGIN_DATA', JSON.stringify(resData));
 }
 
 function clearPrevLoginData() {
-  sessionStorage.clear();
+  localStorage.clear();
 }
 
-function getPrevLoginData() {
-  const res = sessionStorage.getItem('PREV_LOGIN_DATA');
-  let result = null;
+function getPrevLoginData(): AuthStore | undefined {
+  const res = localStorage.getItem('PREV_LOGIN_DATA');
+  let result;
   if (res) {
     try {
       result = JSON.parse(res);
@@ -54,10 +77,18 @@ function getPrevLoginData() {
 
 const authActions = store => ({
   async autoLogin() {
-    const prevLoginData = getPrevLoginData();
-    if (prevLoginData) {
-      onLoginSuccess(store, prevLoginData);
-    }
+    const token = getPrevLoginToken();
+    if(!token) return;
+    const loginRes = await AUTH_APIS.login({
+      token
+    });
+    const isLogin = loginRes.code == 0;
+    if (isLogin) {
+      onLoginSuccess(store, Object.assign({}, getPrevLoginData(), loginRes.data));
+    } 
+    // if (prevLoginData) {
+    //   onLoginSuccess(store, prevLoginData);
+    // }
   },
   async login(state, form, callback) {
     store.setState({
