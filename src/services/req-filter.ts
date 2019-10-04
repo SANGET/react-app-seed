@@ -31,7 +31,7 @@ const $R = new RequestClass<ApiResponse>({
 EventEmitter.on('LOGIN_SUCCESS', ({ loginRes }) => {
   $R.setConfig({
     commonHeaders: {
-      ssid: loginRes.ssID,
+      authorization: loginRes.token,
       // 'Access-Control-Allow-Headers': '*',
       // 'Access-Control-Allow-Origin': '*',
     },

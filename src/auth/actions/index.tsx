@@ -15,7 +15,6 @@ const defaultAuthStore = {
 const authStore = createStore(defaultAuthStore);
 
 function onLoginSuccess(store, resData) {
-  console.log(resData)
   const userInfo = resData;
   const username = resData.username;
   userInfo.username = username;

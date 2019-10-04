@@ -27,7 +27,7 @@ export default class LoginPanel extends Component<LoginPanelProps> {
       {
         ref: 'username',
         type: 'input',
-        defaultValue: 'alex',
+        defaultValue: 'qwe',
         title: '账号',
         iconName: 'account',
         required: true
