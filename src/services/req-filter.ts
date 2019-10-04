@@ -44,10 +44,10 @@ EventEmitter.on('LOGIN_SUCCESS', ({ loginRes }) => {
 
 $R.setConfig({
   baseUrl: 'http://127.0.0.1:5566',
-  fetchOptions: {
-    credentials: 'include',
-    mode: 'cors'
-  }
+  // fetchOptions: {
+  //   credentials: 'include',
+  //   mode: 'cors'
+  // }
 });
 
 $R.checkStatus = (originRes) => originRes.status === 200;
