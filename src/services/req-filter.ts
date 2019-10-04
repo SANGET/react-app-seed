@@ -4,6 +4,7 @@
 
 import { RequestClass } from 'uke-request';
 
+import { EventEmitter } from 'basic-helper';
 import { authStore } from '../auth/actions';
 import { ApiResponse } from '../types/api-struct';
 
@@ -27,11 +28,26 @@ const $R = new RequestClass<ApiResponse>({
   // }
 });
 
+EventEmitter.on('LOGIN_SUCCESS', ({ loginRes }) => {
+  $R.setConfig({
+    commonHeaders: {
+      ssid: loginRes.ssID,
+      // 'Access-Control-Allow-Headers': '*',
+      // 'Access-Control-Allow-Origin': '*',
+    },
+    // fetchOptions: {
+    //   credentials: 'include',
+    //   mode: 'cors'
+    // }
+  });
+});
+
 $R.setConfig({
-  baseUrl: 'http://localhost:5566',
-  // fetchOptions: {
-  //   credentials: 'include'
-  // }
+  baseUrl: 'http://127.0.0.1:5566',
+  fetchOptions: {
+    credentials: 'include',
+    mode: 'cors'
+  }
 });
 
 $R.checkStatus = (originRes) => originRes.status === 200;

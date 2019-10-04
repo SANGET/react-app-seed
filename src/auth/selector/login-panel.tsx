@@ -27,7 +27,7 @@ export default class LoginPanel extends Component<LoginPanelProps> {
       {
         ref: 'username',
         type: 'input',
-        // defaultValue: defaultUserInfo.AdminName,
+        defaultValue: 'alex',
         title: '账号',
         iconName: 'account',
         required: true
@@ -35,7 +35,7 @@ export default class LoginPanel extends Component<LoginPanelProps> {
       {
         ref: 'password',
         type: 'password',
-        // defaultValue: defaultUserInfo.Password,
+        defaultValue: '123',
         title: '密码',
         iconName: 'lock',
         required: true

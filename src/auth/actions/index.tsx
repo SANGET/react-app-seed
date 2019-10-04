@@ -15,11 +15,12 @@ const defaultAuthStore = {
 const authStore = createStore(defaultAuthStore);
 
 function onLoginSuccess(store, resData) {
+  console.log(resData)
   const userInfo = resData;
   const username = resData.username;
   userInfo.username = username;
   // let menuStore = (userInfo.Menus || {}).Child;
-  const sessID = resData.SessId;
+  const sessID = resData.ssID;
   // delete userInfo['Menus'];
 
   store.setState({
@@ -31,7 +32,7 @@ function onLoginSuccess(store, resData) {
     // menuStore
   });
 
-  EventEmitter.emit('LOGIN_SUCCESS', { userInfo });
+  EventEmitter.emit('LOGIN_SUCCESS', { userInfo, loginRes: resData });
   sessionStorage.setItem('PREV_LOGIN_DATA', JSON.stringify(resData));
 }
 
@@ -67,7 +68,7 @@ const authActions = store => ({
     const isLogin = loginRes.code == 0;
     if (isLogin) {
       Call(callback, form);
-      onLoginSuccess(store, form);
+      onLoginSuccess(store, Object.assign({}, loginRes.data, form));
     } else {
       store.setState({
         logging: false,
