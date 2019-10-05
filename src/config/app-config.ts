@@ -1,11 +1,11 @@
-import { setUkelliConfig } from 'ukelli-ui';
+import { setUkelliConfig } from "ukelli-ui";
 
 // import { initFields } from '../lib/fields';
-import { SetFloatLen } from 'basic-helper';
+import { SetFloatLen } from "basic-helper";
 
-import FrontEndNameMappers from './key-mappers';
-import { iconMapper, iconPrefix } from './icon-mapper';
-import { $request } from '../services/req-filter';
+import FrontEndNameMappers from "./key-mappers";
+import { iconMapper, iconPrefix } from "./icon-mapper";
+import { $request } from "../services/req-filter";
 
 /** 统一设置数字格式化的浮点位数 */
 SetFloatLen(4);
@@ -20,23 +20,23 @@ function SetGateUrl(selectedGate) {
    * 设置完线路，需要把 $request 和 PollingEntity 对象中的请求地址也修改才能生效
    */
   $request.setConfig({
-    baseUrl: gateUrl,
+    baseUrl: gateUrl
   });
 }
 
 (function init() {
   SetGateUrl(window.APP_REQ_URL);
-}());
+})();
 
 export function getKeyMap(key) {
   const keyMapper = { ...window.KEY_MAPPERS };
-  return key === 'all' ? keyMapper : keyMapper[key] || key || '';
+  return key === "all" ? keyMapper : keyMapper[key] || key || "";
 }
 
 export function getImage(imageMapperKey, extendPath) {
-  if (!imageMapperKey) return console.log('Wrong parameters');
-  let result = window.$Config.IMAGE_MAPPER[imageMapperKey] || '';
-  if (extendPath) result = `${result.replace(/\/$/, '')}/${extendPath}`;
+  if (!imageMapperKey) return console.log("Wrong parameters");
+  let result = window.$Config.IMAGE_MAPPER[imageMapperKey] || "";
+  if (extendPath) result = `${result.replace(/\/$/, "")}/${extendPath}`;
   return result;
 }
 
@@ -44,13 +44,13 @@ const commonFuncs = {
   getImage,
   getKeyMap,
   $request,
-  isMobile: /Android|iOS/.test(window.navigator.userAgent),
+  isMobile: /Android|iOS/.test(window.navigator.userAgent)
 };
 
 setUkelliConfig({
   ...commonFuncs,
   iconMapper,
-  iconPrefix,
+  iconPrefix
 });
 
 /**
@@ -66,11 +66,11 @@ Object.defineProperties(window, {
   $request: {
     value: $request,
     writable: false
-  },
+  }
 });
 
 Object.assign(window, {
-  KEY_MAPPERS: { ...window.KEY_MAPPERS, ...FrontEndNameMappers },
+  KEY_MAPPERS: { ...window.KEY_MAPPERS, ...FrontEndNameMappers }
 });
 
 // initFields();

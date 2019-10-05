@@ -2,11 +2,11 @@
  * 这里是根据具体业务的处理filter
  */
 
-import { RequestClass } from 'uke-request';
+import { RequestClass } from "uke-request";
 
-import { EventEmitter } from 'basic-helper';
-import { getPrevLoginToken } from '../auth/actions/store';
-import { ApiResponse } from '../types/api-struct';
+import { EventEmitter } from "basic-helper";
+import { getPrevLoginToken } from "../auth/actions/store";
+import { ApiResponse } from "../types/api-struct";
 
 declare global {
   interface Window {
@@ -18,22 +18,24 @@ const token = getPrevLoginToken();
 
 /** 初始化时添加统一的 res 类型 */
 const $R = new RequestClass<ApiResponse>({
-  baseUrl: 'http://localhost:5566',
-  commonHeaders: token ? {
-    authorization: token
-  } : {}
+  baseUrl: "http://localhost:5566",
+  commonHeaders: token
+    ? {
+        authorization: token
+      }
+    : {}
   // fetchOptions: {
   //   credentials: 'include'
   // }
 });
 
-EventEmitter.on('LOGIN_SUCCESS', ({ loginRes }) => {
+EventEmitter.on("LOGIN_SUCCESS", ({ loginRes }) => {
   $R.setConfig({
     commonHeaders: {
-      authorization: loginRes.token,
+      authorization: loginRes.token
       // 'Access-Control-Allow-Headers': '*',
       // 'Access-Control-Allow-Origin': '*',
-    },
+    }
     // fetchOptions: {
     //   credentials: 'include',
     //   mode: 'cors'
@@ -41,7 +43,7 @@ EventEmitter.on('LOGIN_SUCCESS', ({ loginRes }) => {
   });
 });
 
-$R.checkStatus = (originRes) => originRes.status === 200;
+$R.checkStatus = originRes => originRes.status === 200;
 
 /**
  * 前端应该与服务端的接口分离
@@ -102,10 +104,8 @@ function handleRes({ resData, callback }) {
 /**
  * 监听 $R res 处理函数
  */
-$R.on('onRes', handleRes);
+$R.on("onRes", handleRes);
 
 const $request = $R;
 
-export {
-  $request, $R
-};
+export { $request, $R };

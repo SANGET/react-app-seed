@@ -1,7 +1,7 @@
-import React from 'react';
-import { ShowModal, Button } from 'ukelli-ui';
+import React from "react";
+import { ShowModal, Button } from "ukelli-ui";
 
-const AboutPage = (props) => {
+const AboutPage = props => {
   return (
     <div className="home-page">
       <div>

@@ -1,26 +1,24 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import { Tabs, Tab } from 'ukelli-ui/core/tabs';
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { Tabs, Tab } from "ukelli-ui/core/tabs";
 
-import LoginPanel, { LoginPanelProps } from './login-panel';
-import RegisterPanel from '../register'
+import LoginPanel, { LoginPanelProps } from "./login-panel";
+import RegisterPanel from "../register";
 
 export interface LoginSelectorProps extends LoginPanelProps {
   isLogin: boolean;
   children?: any;
 }
 
-const LoginSelector: React.SFC<LoginSelectorProps> = (props) => {
+const LoginSelector: React.SFC<LoginSelectorProps> = props => {
   const { children, isLogin, autoLoging } = props;
 
   let container;
   switch (true) {
     case autoLoging:
-      container = (
-        <div>自动登陆中...</div>
-      );
+      container = <div>自动登陆中...</div>;
       break;
     case isLogin:
       container = React.cloneElement(children, props);
@@ -29,12 +27,10 @@ const LoginSelector: React.SFC<LoginSelectorProps> = (props) => {
       container = (
         <Tabs>
           <Tab label="登陆">
-            <LoginPanel
-              {...props}/>
+            <LoginPanel {...props} />
           </Tab>
           <Tab label="注册">
-            <RegisterPanel
-              {...props}/>
+            <RegisterPanel {...props} />
           </Tab>
         </Tabs>
       );
@@ -42,8 +38,10 @@ const LoginSelector: React.SFC<LoginSelectorProps> = (props) => {
   return (
     <TransitionGroup component={null}>
       <CSSTransition
-        key={isLogin ? 'LOGIN_SUCCESS' : 'NO_LOGIN_YET'}
-        classNames="fade" timeout={200}>
+        key={isLogin ? "LOGIN_SUCCESS" : "NO_LOGIN_YET"}
+        classNames="fade"
+        timeout={200}
+      >
         {container}
       </CSSTransition>
     </TransitionGroup>

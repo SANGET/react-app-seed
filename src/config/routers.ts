@@ -3,13 +3,13 @@ import AboutPage from "../pages/about";
 
 export default [
   {
-    path: '/',
-    name: 'Home',
+    path: "/",
+    name: "Home",
     component: HomePage
   },
   {
-    path: '/about',
-    name: 'About',
+    path: "/about",
+    name: "About",
     component: AboutPage
-  },
+  }
 ];

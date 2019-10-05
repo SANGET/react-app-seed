@@ -1,14 +1,19 @@
-import React from 'react';
-import { hot } from 'react-hot-loader';
+import React from "react";
+import { hot } from "react-hot-loader";
 import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { Provider, connect } from 'unistore/react';
+import { Provider, connect } from "unistore/react";
 
-import HomePage from './pages/home';
-import { authStore, authActions, AuthActions, AuthStore } from './auth/actions/store';
+import HomePage from "./pages/home";
+import {
+  authStore,
+  authActions,
+  AuthActions,
+  AuthStore
+} from "./auth/actions/store";
 
-import './style.scss';
-import LoginSelector from './auth/selector';
-import routers from './config/routers'
+import "./style.scss";
+import LoginSelector from "./auth/selector";
+import routers from "./config/routers";
 
 interface AppProps extends AuthActions, AuthStore {
   // username?: string;
@@ -17,12 +22,19 @@ interface AppProps extends AuthActions, AuthStore {
 class App extends React.Component<AppProps, {}> {
   state = {
     ready: false
-  }
+  };
   componentDidMount() {
     this.props.autoLogin();
   }
   render() {
-    const { autoLoging, login, logout, isLogin, logging, loginResDesc } = this.props;
+    const {
+      autoLoging,
+      login,
+      logout,
+      isLogin,
+      logging,
+      loginResDesc
+    } = this.props;
     return (
       <LoginSelector
         loginResDesc={loginResDesc}
@@ -30,32 +42,29 @@ class App extends React.Component<AppProps, {}> {
         autoLoging={autoLoging}
         isLogin={isLogin}
         login={login}
-        logout={logout}>
+        logout={logout}
+      >
         <Router>
           <div>
             <nav>
               <ul>
-                {
-                  routers.map(({ path, name, component }) => {
-                    return (
-                      <li key={path}>
-                        <Link to={path}>{name}</Link>
-                      </li>
-                    )
-                  })
-                }
+                {routers.map(({ path, name, component }) => {
+                  return (
+                    <li key={path}>
+                      <Link to={path}>{name}</Link>
+                    </li>
+                  );
+                })}
               </ul>
             </nav>
-            {
-              routers.map(({ path, name, component }) => {
-                const C = component;
-                return (
-                  <Route key={path} path={path}>
-                    <C />
-                  </Route>
-                )
-              })
-            }
+            {routers.map(({ path, name, component }) => {
+              const C = component;
+              return (
+                <Route key={path} path={path}>
+                  <C />
+                </Route>
+              );
+            })}
           </div>
         </Router>
         {/* <Router>
@@ -99,18 +108,18 @@ class App extends React.Component<AppProps, {}> {
   }
 }
 
-
 function selector(state) {
   return state;
 }
 
-const LoginFilterWithStore = connect(selector, authActions)(userStore => (
-  <App {...userStore}/>
-));
+const LoginFilterWithStore = connect(
+  selector,
+  authActions
+)(userStore => <App {...userStore} />);
 
 const C = () => (
   <Provider store={authStore}>
-    <LoginFilterWithStore/>
+    <LoginFilterWithStore />
   </Provider>
 );
 

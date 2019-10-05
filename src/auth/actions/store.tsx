@@ -1,7 +1,7 @@
-import createStore from 'unistore';
-import { Call, EventEmitter } from 'basic-helper';
+import createStore from "unistore";
+import { Call, EventEmitter } from "basic-helper";
 
-import * as AUTH_APIS from './apis';
+import * as AUTH_APIS from "./apis";
 
 export interface AuthActions {
   autoLogin: () => void;
@@ -9,7 +9,7 @@ export interface AuthActions {
   logout: () => void;
 }
 export interface AuthStore {
-  userInfo: {},
+  userInfo: {};
   username: string;
   loginResDesc: string;
   autoLoging: boolean;
@@ -26,13 +26,13 @@ export function getPrevLoginToken() {
 
 const defaultAuthStore: AuthStore = {
   userInfo: {},
-  username: '',
-  loginResDesc: '',
+  username: "",
+  loginResDesc: "",
   autoLoging: !!getPrevLoginToken(),
   logging: false,
   logouting: false,
   isLogin: false,
-  token: '',
+  token: ""
 };
 const authStore = createStore(defaultAuthStore);
 
@@ -50,12 +50,12 @@ function onLoginSuccess(store, resData) {
     isLogin: true,
     token,
     username,
-    userInfo,
+    userInfo
     // menuStore
   });
 
-  EventEmitter.emit('LOGIN_SUCCESS', { userInfo, loginRes: resData });
-  localStorage.setItem('PREV_LOGIN_DATA', JSON.stringify(resData));
+  EventEmitter.emit("LOGIN_SUCCESS", { userInfo, loginRes: resData });
+  localStorage.setItem("PREV_LOGIN_DATA", JSON.stringify(resData));
 }
 
 function clearPrevLoginData() {
@@ -63,7 +63,7 @@ function clearPrevLoginData() {
 }
 
 function getPrevLoginData(): AuthStore | undefined {
-  const res = localStorage.getItem('PREV_LOGIN_DATA');
+  const res = localStorage.getItem("PREV_LOGIN_DATA");
   let result;
   if (res) {
     try {
@@ -78,14 +78,17 @@ function getPrevLoginData(): AuthStore | undefined {
 const authActions = store => ({
   async autoLogin() {
     const token = getPrevLoginToken();
-    if(!token) return;
+    if (!token) return;
     const loginRes = await AUTH_APIS.login({
       token
     });
     const isLogin = loginRes.code == 0;
     if (isLogin) {
-      onLoginSuccess(store, Object.assign({}, getPrevLoginData(), loginRes.data));
-    } 
+      onLoginSuccess(
+        store,
+        Object.assign({}, getPrevLoginData(), loginRes.data)
+      );
+    }
     // if (prevLoginData) {
     //   onLoginSuccess(store, prevLoginData);
     // }
@@ -108,14 +111,12 @@ const authActions = store => ({
   },
   async logout() {
     store.setState({
-      logouting: true,
+      logouting: true
     });
     await AUTH_APIS.logout();
     store.setState(defaultAuthStore);
     clearPrevLoginData();
-  },
+  }
 });
 
-export {
-  authStore, authActions
-};
+export { authStore, authActions };
