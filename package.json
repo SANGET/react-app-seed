@@ -4,9 +4,12 @@
   "scripts": {
     "start": "ukectl start",
     "build": "ukectl build",
+    "prettier:base": "prettier --parser typescript",
+    "format": "npm run prettier:base -- --write \"src/**/*.{ts,tsx}\"",
     "test": "ukectl test"
   },
   "devDependencies": {
+    "prettier": "^1.18.2",
     "uke-scripts": "^1.0.0"
   },
   "dependencies": {
