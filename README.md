@@ -84,7 +84,7 @@ function forDocument(params: Params) {
 - [@mini-code/base-func](https://github.com/SANGET/@mini-code/base-func-js.git)
 - [@deer-ui/core](https://github.com/ukelli/@deer-ui/core.git)
 - [@mini-code/request](https://github.com/SANGET/@mini-code/request.git)
-- [uke-dashboard](https://github.com/SANGET/uke-dashboard.git)
+<!-- - [uke-dashboard](https://github.com/SANGET/uke-dashboard.git)
 - [uke-admin-web-scaffold](https://github.com/SANGET/uke-admin-web-scaffold.git)
 - [uke-cli](https://github.com/SANGET/uke-cli.git)
-- [uke-scripts](https://github.com/SANGET/uke-scripts.git)
+- [uke-scripts](https://github.com/SANGET/uke-scripts.git) -->
