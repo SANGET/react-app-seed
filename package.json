@@ -1,16 +1,16 @@
 {
   "name": "react-app-seed",
-  "version": "1.0.0-rc.0",
+  "version": "1.0.0",
   "scripts": {
-    "start": "ukectl start",
-    "build": "ukectl build",
+    "start": "minictl start",
+    "build": "minictl build",
     "prettier:base": "prettier --parser typescript",
     "format": "npm run prettier:base -- --write \"src/**/*.{ts,tsx}\"",
-    "test": "ukectl test"
+    "test": "minictl test"
   },
   "devDependencies": {
-    "prettier": "^1.18.2",
-    "uke-scripts": "^1.0.0"
+    "@mini-code/scripts": "^1.0.0-alpha1.2",
+    "prettier": "^1.18.2"
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
@@ -18,16 +18,14 @@
     "@types/react": "^16.9.4",
     "@types/react-dom": "^16.9.1",
     "@types/react-router-dom": "^5.1.0",
-    "basic-helper": "^3.0.7",
-    "promise": "8.0.1",
-    "prop-types": "^15.5.10",
-    "react": "^16.10.1",
-    "react-dom": "^16.10.1",
+    "@mini-code/base-func": "^1.1.0",
+    "@mini-code/request": "^1.0.0-alpha2.3",
+    "@deer-ui/core": "^4.0.0-rc4.8",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
     "react-hot-loader": "^4.12.14",
     "react-router-dom": "^5.1.2",
     "react-transition-group": "^4.3.0",
-    "uke-request": "^1.1.0-rc5",
-    "ukelli-ui": "^3.1.0-rc2",
     "unistore": "^3.2.1"
   },
   "author": "SANGET",

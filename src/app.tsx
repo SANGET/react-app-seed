@@ -1,6 +1,8 @@
 import React from "react";
 import { hot } from "react-hot-loader";
-import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  HashRouter as Router, Switch, Route, Link
+} from "react-router-dom";
 import { Provider, connect } from "unistore/react";
 
 import HomePage from "./pages/home";
@@ -23,9 +25,11 @@ class App extends React.Component<AppProps, {}> {
   state = {
     ready: false
   };
+
   componentDidMount() {
     this.props.autoLogin();
   }
+
   render() {
     const {
       autoLoging,
@@ -42,19 +46,16 @@ class App extends React.Component<AppProps, {}> {
         autoLoging={autoLoging}
         isLogin={isLogin}
         login={login}
-        logout={logout}
-      >
+        logout={logout}>
         <Router>
           <div>
             <nav>
               <ul>
-                {routers.map(({ path, name, component }) => {
-                  return (
-                    <li key={path}>
-                      <Link to={path}>{name}</Link>
-                    </li>
-                  );
-                })}
+                {routers.map(({ path, name, component }) => (
+                  <li key={path}>
+                    <Link to={path}>{name}</Link>
+                  </li>
+                ))}
               </ul>
             </nav>
             {routers.map(({ path, name, component }) => {
@@ -115,7 +116,7 @@ function selector(state) {
 const LoginFilterWithStore = connect(
   selector,
   authActions
-)(userStore => <App {...userStore} />);
+)((userStore) => <App {...userStore} />);
 
 const C = () => (
   <Provider store={authStore}>

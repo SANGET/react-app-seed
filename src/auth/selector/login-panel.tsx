@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import { FormGenerator } from "ukelli-ui/core/form-generator";
-import { TipPanel } from "ukelli-ui/core/tip-panel";
-import { FormOptions } from "ukelli-ui/core/form-generator/form-generator";
+import { FormGenerator } from "@deer-ui/core/form-generator";
+import { Alert } from "@deer-ui/core/alert";
+import { FormOptions } from "@deer-ui/core/form-generator/form-generator";
 
-import Storage from "basic-helper/storage";
+import Storage from "@mini-code/base-func/storage";
 import { AuthActions } from "../actions/store";
 
 const isDev = process.env.NODE_ENV == "development";
@@ -19,6 +19,7 @@ export interface LoginPanelProps {
 
 export default class LoginPanel extends Component<LoginPanelProps> {
   formOptions: FormOptions;
+
   formHelper;
 
   constructor(props) {
@@ -61,26 +62,24 @@ export default class LoginPanel extends Component<LoginPanelProps> {
       <div className="login-panel fixbg">
         <div className="form-layout">
           <h3 className="title"></h3>
-          {loginResDesc && <TipPanel text={loginResDesc} />}
+          {loginResDesc && <Alert text={loginResDesc} />}
           <FormGenerator
             className="login-form-container"
             // inlineTitle={true}
-            onSubmit={e => {
-              login(this.formHelper.value, userInfo => {
+            onSubmit={(e) => {
+              login(this.formHelper.value, (userInfo) => {
                 // console.log(userInfo)
                 Storage.setItem(StoreLoginInfo, userInfo);
               });
             }}
             showInputTitle
             formOptions={this.formOptions}
-            ref={e => (this.formHelper = e)}
-          >
+            ref={(e) => (this.formHelper = e)}>
             <div className="form-group">
               <button
                 type="submit"
                 className="btn theme flat login-btn"
-                id="freeLogin"
-              >
+                id="freeLogin">
                 {logging ? "登录中..." : "登录"}
               </button>
             </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { ShowModal, Button } from "ukelli-ui";
+import { ShowModal, Button } from "@deer-ui/core";
 
 const AboutPage = props => {
   return (

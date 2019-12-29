@@ -81,9 +81,9 @@ function forDocument(params: Params) {
 
 ## 依赖
 
-- [basic-helper](https://github.com/SANGET/basic-helper-js.git)
-- [ukelli-ui](https://github.com/ukelli/ukelli-ui.git)
-- [uke-request](https://github.com/SANGET/uke-request.git)
+- [@mini-code/base-func](https://github.com/SANGET/@mini-code/base-func-js.git)
+- [@deer-ui/core](https://github.com/ukelli/@deer-ui/core.git)
+- [@mini-code/request](https://github.com/SANGET/@mini-code/request.git)
 - [uke-dashboard](https://github.com/SANGET/uke-dashboard.git)
 - [uke-admin-web-scaffold](https://github.com/SANGET/uke-admin-web-scaffold.git)
 - [uke-cli](https://github.com/SANGET/uke-cli.git)

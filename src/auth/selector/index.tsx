@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-import { Tabs, Tab } from "ukelli-ui/core/tabs";
+import { Tabs, Tab } from "@deer-ui/core/tabs";
 
 import LoginPanel, { LoginPanelProps } from "./login-panel";
 import RegisterPanel from "../register";
@@ -12,7 +12,7 @@ export interface LoginSelectorProps extends LoginPanelProps {
   children?: any;
 }
 
-const LoginSelector: React.SFC<LoginSelectorProps> = props => {
+const LoginSelector: React.SFC<LoginSelectorProps> = (props) => {
   const { children, isLogin, autoLoging } = props;
 
   let container;
@@ -40,8 +40,7 @@ const LoginSelector: React.SFC<LoginSelectorProps> = props => {
       <CSSTransition
         key={isLogin ? "LOGIN_SUCCESS" : "NO_LOGIN_YET"}
         classNames="fade"
-        timeout={200}
-      >
+        timeout={200}>
         {container}
       </CSSTransition>
     </TransitionGroup>

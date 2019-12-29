@@ -1,7 +1,7 @@
-import { setUkelliConfig } from "ukelli-ui";
+import { setUkelliConfig } from "@deer-ui/core";
 
 // import { initFields } from '../lib/fields';
-import { SetFloatLen } from "basic-helper";
+import { SetFloatLen } from "@mini-code/base-func";
 
 import FrontEndNameMappers from "./key-mappers";
 import { iconMapper, iconPrefix } from "./icon-mapper";

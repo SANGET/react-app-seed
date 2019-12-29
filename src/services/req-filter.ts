@@ -2,9 +2,9 @@
  * 这里是根据具体业务的处理filter
  */
 
-import { RequestClass } from "uke-request";
+import { RequestClass } from "@mini-code/request";
 
-import { EventEmitter } from "basic-helper";
+import { EventEmitter } from "@mini-code/base-func";
 import { getPrevLoginToken } from "../auth/actions/store";
 import { ApiResponse } from "../types/api-struct";
 
@@ -21,8 +21,8 @@ const $R = new RequestClass<ApiResponse>({
   baseUrl: "http://localhost:5566",
   commonHeaders: token
     ? {
-        authorization: token
-      }
+      authorization: token
+    }
     : {}
   // fetchOptions: {
   //   credentials: 'include'
@@ -43,7 +43,7 @@ EventEmitter.on("LOGIN_SUCCESS", ({ loginRes }) => {
   });
 });
 
-$R.checkStatus = originRes => originRes.status === 200;
+$R.checkStatus = (originRes) => originRes.status === 200;
 
 /**
  * 前端应该与服务端的接口分离

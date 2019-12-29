@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ShowModal, Button } from "ukelli-ui";
+import { ShowModal, Button } from "@deer-ui/core";
 import { getUsers } from "../auth/actions/apis";
 
 const Popover = () => {

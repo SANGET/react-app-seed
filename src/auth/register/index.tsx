@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-import { FormGenerator, TipPanel } from "ukelli-ui";
-import { FormOptions } from "ukelli-ui/core/form-generator/form-generator";
+import { FormGenerator, TipPanel } from "@deer-ui/core";
+import { FormOptions } from "@deer-ui/core/form-generator/form-generator";
 
 import { register } from "../actions/apis";
 
@@ -9,7 +9,9 @@ export default class Register extends Component {
   state = {
     logging: false
   };
+
   formOptions: FormOptions;
+
   formHelper;
 
   constructor(props) {
@@ -42,19 +44,17 @@ export default class Register extends Component {
           <FormGenerator
             className="login-form-container"
             // inlineTitle={true}
-            onSubmit={e => {
+            onSubmit={(e) => {
               register(this.formHelper.value);
             }}
             showInputTitle
             formOptions={this.formOptions}
-            ref={e => (this.formHelper = e)}
-          >
+            ref={(e) => (this.formHelper = e)}>
             <div className="form-group">
               <button
                 type="submit"
                 className="btn theme flat login-btn"
-                id="freeLogin"
-              >
+                id="freeLogin">
                 {logging ? "注册中..." : "注册"}
               </button>
             </div>
